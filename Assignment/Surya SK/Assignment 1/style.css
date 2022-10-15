@@ -1,0 +1,72 @@
+.content{
+    padding: 30px 30px 30px 30px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: relative;
+}
+.navbar{
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+.nav-name{
+    padding-right: 55rem;
+}
+.container{
+    border-radius: 15px;
+    width: 1200px;
+    background-color: chartreuse;
+}
+.profile{
+    background-color: blue;
+    display:flex;
+    border-radius: 15px;
+}
+.profile-pic{
+    border: 15px solid white;
+    margin-left: 25px;
+    margin-top: 100px;
+}
+.profile-content{
+    padding: 30px;
+    text-align: center;
+    padding-left: 30rem;
+    color: white;
+}
+.download{
+    border: transparent;
+    border-radius: 15px ;
+    padding: 14px 16px;
+    cursor: pointer;
+}
+.hire{
+    cursor: pointer;
+    border: transparent;
+    border-radius: 15px;
+    padding: 14px 16px;
+    background-color:rgb(184, 170, 90);
+}
+.about-me{
+    display:flex;
+    width: 1200px;
+    height:300px;
+    background-color: aliceblue;
+}
+.about-me-title{
+    padding-left: 30px;
+    padding-top: 30px;
+    width: 500px;
+}
+.about-me-des{
+    width: 500px;
+    height: 240px;
+}
+.fa-facebook{
+    background-color: black;
+    color:white; 
+    border-radius:25px;
+    padding: 4px 6px;
+}
+.nav-icons{
+     padding-left: 180px;
+     word-spacing: 7px;
+}
