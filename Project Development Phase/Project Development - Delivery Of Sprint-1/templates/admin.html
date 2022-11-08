@@ -1,0 +1,341 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Welcome</title>
+
+{% endblock %}
+
+{% block body %}
+
+<body style="background-color:black;">
+
+    <div class="container-md" style="padding-top: 100px;">
+
+        <div class="row" style="height:100px;">
+            <h1 class="page-header text-primary mx-auto">WELCOME TO <span style="color:white;">ADMIN PAGE</span></h1>
+        </div>
+
+        <div class="row col-md-offset-3 col-md-5 ">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category,message in messages %}
+            <div class="alert alert-{{category}} text-center" style="color: red;">{{message}}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+
+        </div>
+        <div class="row g-4 mb-4">
+
+            <form action="{{ url_for('remove') }}" method="POST">
+                <div class="col mb-3">
+                    <button type="submit" class="btn btn-primary"><span
+                            style="color:black; font-weight: bolder; ">Delect</span></button>
+                </div>
+                <div class="col-3 form-group ">
+                    <input type="text" style="color: white; width: 150px;" class="form-control" id="otpv" name="otpv"
+                        placeholder="Verification Code" required>
+                </div>
+
+            </form>
+
+            <div class="col">
+                <a style="color: black; font-weight: bolder;" href="{{url_for('home')}}"
+                    class="btn btn-primary ">Logout</a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    </div>
+    <div class="container-md">
+
+        <div id="accordion">
+
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="false" aria-controls="collapseOne">
+                            <h2 style="color: black;">User Datatbase</h2>
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="row mx-auto" style="height: 50px;">
+                            <input type="text" style="color: white; width: min-content;" class="form-control"
+                                id="myInput" name="myInput" onkeyup="myFunction()" placeholder="Search for Names">
+                            <div class="col" style="height:50px;">
+                                <h2 style="color: black;"> TOTAL NUMBER OF USERS : <span
+                                        style="color: black; font-weight: bolder; ">{{message}}</span></h2>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row mx-auto ">
+                            <table class="table table-striped table-light" id="myTable">
+                                <thead class="thead-dark ">
+                                    <tr>
+                                        <th scope="row" onclick="sortTable(0)">ID</th>
+                                        <th scope="row" onclick="sortTable(1)">NAME</th>
+                                        <th scope="row" onclick="sortTable(0)">EMAIL</th>
+                                        <th scope="row" onclick="sortTable(1)">PASSWORD</th>
+                                        <th scope="row" onclick="sortTable(0)">PHONENUMBER</th>
+                                        <th scope="row">DELECT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in users %}
+                                    <tr>
+                                        <td style="color: black;">{{row['ID']}}</td>
+                                        <td style="color: black;">{{row["NAME"]}}</td>
+                                        <td style="color: black;">{{row["EMAIL"]}}</td>
+                                        <td style="color: black;">{{row["PASSWORD"]}}</td>
+                                        <td style="color: black;">{{row['PHONENUMBER']}}</td>
+                                        <td><a style="color: black;" href="/delete/{{row['ID']}} "
+                                                class="btn btn-primary">DELECT {{ row['ID']}}</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="false" aria-controls="collapseTwo">
+                            <h2 style="color: black;">AGENT DATABASE</h2>
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row mx-auto" style="height: 50px;">
+                            <input type="text" style="color: white; width: min-content;" class="form-control"
+                                id="myInput" name="myInput" onkeyup="myFunction()" placeholder="Search for Names">
+                            <div class="col" style="height:50px;">
+                                <h2 style="color: black;"> TOTAL NUMBER OF AGENT : <span
+                                        style="color: black; font-weight: bolder; ">{{msgagent}}</span></h2>
+                            </div>
+                        </div>
+
+
+                        <div class="row mx-auto ">
+                            <table class="table table-striped table-light " id="myTable">
+                                <thead class="thead-dark ">
+                                    <tr>
+                                        <th scope="row" onclick="sortTable(0)">ID</th>
+                                        <th scope="row" onclick="sortTable(1)">NAME</th>
+                                        <th scope="row" onclick="sortTable(0)">EMAIL</th>
+                                        <th scope="row" onclick="sortTable(1)">PASSWORD</th>
+                                        <th scope="row" onclick="sortTable(0)">PHONE NUMBER</th>
+                                        <th scope="row" onclick="sortTable(1)">SERVICE_AGENT</th>
+                                        <th scope="row" onclick="sortTable(0)">ADDRESS</th>
+                                        <th scope="row" onclick="sortTable(1)">CITY</th>
+                                        <th scope="row" onclick="sortTable(0)">STATE</th>
+                                        <th scope="row" onclick="sortTable(1)">RESUME LINK</th>
+                                        <th scope="row">DELECT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in agents %}
+                                    <tr>
+                                        <td style="color: black;">{{row['ID']}}</td>
+                                        <td style="color: black;">{{row["NAME"]}}</td>
+                                        <td style="color: black;">{{row["EMAIL"]}}</td>
+                                        <td style="color: black;">{{row["PASSWORD"]}}</td>
+                                        <td style="color: black;">{{row['PHONENUMBER']}}</td>
+                                        <td style="color: black;">{{row['SERVICE_AGENT']}}</td>
+                                        <td style="color: black;">{{row['ADDRESS']}}</td>
+                                        <td style="color: black;">{{row['CITY']}}</td>
+                                        <td style="color: black;">{{row['STATE']}}</td>
+                                        <td style="color: black;">{{row['RESUME_LINK']}}</td>
+                                        <td><a style="color: black;" href="/agentdelete/{{row['ID']}} "
+                                                class="btn btn-primary">DELECT {{row['ID']}}</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree"
+                            aria-expanded="false" aria-controls="collapseThree">
+                            <h2 style="color: black;">Complaint Datatbase</h2>
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="row mx-auto" style="height: 50px;">
+                            <input type="text" style="color: white; width: min-content;" class="form-control"
+                                id="myInput" name="myInput" onkeyup="myFunction()" placeholder="Search for Names">
+                            <div class="col" style="height:50px;">
+                                <h2 style="color: black;"> TOTAL NUMBER OF COMPLAINT : <span
+                                        style="color: black; font-weight: bolder; ">{{issue}}</span></h2>
+                            </div>
+                        </div>
+
+
+                        <div class="row mx-auto ">
+                            <table class="table table-striped table-light " id="myTable">
+                                <thead class="thead-dark ">
+                                    <tr>
+                                        <th scope="row" onclick="sortTable(0)">ID</th>
+                                        <th scope="row" onclick="sortTable(1)">CUSTOMER_ID</th>
+                                        <th scope="row" onclick="sortTable(0)">DATE</th>
+                                        <th scope="row" onclick="sortTable(1)">EMAIL</th>
+                                        <th scope="row" onclick="sortTable(0)">PHONE_NUMBER</th>
+                                        <th scope="row" onclick="sortTable(1)">TOPIC</th>
+                                        <th scope="row" onclick="sortTable(0)">DESCRIPTION</th>
+                                        <th scope="row" onclick="sortTable(1)">SERVICE_TYPE</th>
+                                        <th scope="row" onclick="sortTable(0)">SERVICE_AGENT</th>
+                                        <th scope="row" onclick="sortTable(1)">ADDRESS</th>
+                                        <th scope="row" onclick="sortTable(0)">STATE</th>
+                                        <th scope="row" onclick="sortTable(1)">IMAGE_LINK</th>
+                                        <th scope="row" onclick="sortTable(0)">STATUS</th>
+                                        <th scope="row" onclick="sortTable(1)">DELECT</th>
+                                        <th scope="row" onclick="sortTable(0)">ALLOCATE</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in complaint %}
+                                    <tr>
+                                        <td style="color: black;">{{row['ID']}}</td>
+                                        <td style="color: black;">{{row["CUSTOMER_ID"]}}</td>
+                                        <td style="color: black;">{{row["DATE"]}}</td>
+                                        <td style="color: black;">{{row["EMAIL"]}}</td>
+                                        <td style="color: black;">{{row['PHONENUMBER']}}</td>
+                                        <td style="color: black;">{{row['TOPIC']}}</td>
+                                        <td style="color: black;">{{row['DESCRIPTION']}}</td>
+                                        <td style="color: black;">{{row['SERVICE_TYPE']}}</td>
+                                        <td style="color: black;">{{row['SERVICE_AGENT']}}</td>
+                                        <td style="color: black;">{{row['ADDRESS']}}</td>
+                                        <td style="color: black;">{{row['STATE']}}</td>
+                                        <td style="color: black;">{{row['IMAGE_LINK']}}</td>
+                                        <td style="color: black;">{{row['STATUS']}}</td>
+                                        <td><a style="color: black;" href="/deletecomplaint/{{row['ID']}} "
+                                                class="btn btn-primary">DELECT {{row['ID']}}</a>
+                                        </td>
+                                        <td><a style="color: black;" href="/viewagent/{{row['ID']}}" class="btn btn-primary">AGENT {{row['ID']}}</a>
+                                    </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                //Set the sorting direction to ascending:
+                dir = "asc";
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                    first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                        one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        /*check if the two rows should switch place,
+                        based on the direction, asc or desc:*/
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                //if so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                //if so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /*If a switch has been marked, make the switch
+                        and mark that a switch has been done:*/
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        //Each time a switch is done, increase this count by 1:
+                        switchcount++;
+                    } else {
+                        /*If no switching has been done AND the direction is "asc",
+                        set the direction to "desc" and run the while loop again.*/
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+        </script>
+
+
+
+
+        {% endblock %}
+
+</body>
