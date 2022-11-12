@@ -5,7 +5,7 @@ Customer Care Registry
 | Query | Reply |
 | --- | --- |
 | Project Title | &emsp; <b>CUSTOMER CARE REGISTRY</b> &emsp; |
-| Project Domain | &emsp; Cloud Application Development &emsp; |
+| Project Domain | &emsp; CLOUD APPLICATION DEVELOPMENT &emsp; |
 | Team ID | &emsp; PNT2022TMID32111 &emsp; |
 | Team Size | &emsp; 4 &emsp; |
 | College Name | &emsp; K S R INSTITUTE FOR ENGINEERING AND TECHNOLOGY, THIRUCHENGODU &emsp; |
