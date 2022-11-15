@@ -7,6 +7,7 @@ import uuid
 from datetime import date
 import random
 from registry.model import Customer, Agent, Admin, Mail
+from ..secret import connection_string
 
 views = Blueprint("blue_print", __name__)
 email_regex = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
@@ -17,7 +18,7 @@ agent = Agent()
 admin = Admin()
 mail = Mail()
 
-conn = ibm_db.connect('DATABASE=bludb;HOSTNAME=2f3279a5-73d1-4859-88f0-a6c3e6b4b907.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud;PORT=30756;SECURITY=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=tdn81266;PWD=7LY8okjAouJf3LoO', '', '')
+conn = connection_string
 
 @views.route('/logout')
 @login_required
@@ -614,7 +615,7 @@ def change_password(role, email):
             role = role,
             email = email,
             to_show = to_show,
-            message= msg
+            message = msg
         )
 
     return render_template(
