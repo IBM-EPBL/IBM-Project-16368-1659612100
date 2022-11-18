@@ -1,5 +1,7 @@
 # IBM-Project-16368-1659612100
-Customer Care Registry
+<hr>
+Customer Care Registry <img alt="Visitor Badge" src="https://visitor-badge.feriirawann.repl.co?username=IBM-EPBL&repo=IBM-Project-16368-1659612100&label=VISITS&style=plastic&color=%23457BFF&contentType=svg">
+<hr>
 <h3>Basic Details</h3>
 
 | Query | Reply |
